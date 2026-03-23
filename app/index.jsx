@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   sectionTitle: {
-    fontSize: 24, // Heading1
+    fontSize: 24,
     fontWeight: "700",
     color: "#131313",
     paddingHorizontal: 24,

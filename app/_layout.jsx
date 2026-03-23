@@ -7,6 +7,7 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         headerShown: true,
+        headerShadowVisible: false,
         headerStyle: { backgroundColor: "#fff" },
         headerTintColor: "#131313",
         headerTitle: "",
@@ -56,11 +57,6 @@ export default function TabsLayout() {
               resizeMode="contain"
             />
           ),
-          tabBarButton: (props) => (
-            <Pressable {...props} onPress={() => {}} style={props.style}>
-              {props.children}
-            </Pressable>
-          ),
         }}
       />
       <Tabs.Screen
@@ -85,11 +81,6 @@ export default function TabsLayout() {
               style={styles.headerIcon}
               resizeMode="contain"
             />
-          ),
-          tabBarButton: (props) => (
-            <Pressable {...props} onPress={() => {}} style={props.style}>
-              {props.children}
-            </Pressable>
           ),
         }}
       />
