@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Text, ScrollView, StyleSheet, View, FlatList } from 'react-native';
-import BookItem from '../component/BookItem';
-import NewestItem from "../component/NewestItem";
+import BookItem from '../../component/BookItem';
+import NewestItem from "../../component/NewestItem";
 
 const initialBooks = [
   { id: '1', title: 'Fashinopolis', coverKey: 'fashinopolis', author: 'Dana Thomas' },

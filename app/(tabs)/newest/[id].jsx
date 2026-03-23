@@ -1,17 +1,17 @@
 import { View, StyleSheet, ScrollView, Pressable, Text, Image } from "react-native";
 import { useState } from "react"
 import { useLocalSearchParams, Stack, useRouter } from "expo-router";
-import NewestContent from "../../component/NewestContent";
-import { COVER_IMAGES } from "../../component/coverImages";
+import NewestContent from "../../../component/NewestContent";
+import { COVER_IMAGES } from "../../../component/coverImages";
 
 export default function Newest() {
   const router = useRouter();
   const { id, title, coverKey, rating, author } = useLocalSearchParams();
   const bookCover = coverKey && COVER_IMAGES[coverKey] ? COVER_IMAGES[coverKey] : null;
   const [isSaved, setIsSaved] = useState(false);
-  const bookmark = require("../../assets/icon/icon_nav_bookmark.png");
-  const bookmarkActive = require("../../assets/icon/icon_nav_bookmark_actived.png");
-  const back = require("../../assets/icon/icon_back.png")
+  const bookmark = require("../../../assets/icon/icon_nav_bookmark.png");
+  const bookmarkActive = require("../../../assets/icon/icon_nav_bookmark_actived.png");
+  const back = require("../../../assets/icon/icon_back.png");
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ headerShown: false }} />
@@ -21,6 +21,7 @@ export default function Newest() {
           <Image
             source={back}
             style={styles.backIcon}
+            resizeMode="contain"
           />
         </Pressable>
 
@@ -28,6 +29,7 @@ export default function Newest() {
           <Image
             source={isSaved ? bookmarkActive : bookmark}
             style={styles.bookmarkIcon}
+            resizeMode="contain"
           />
         </Pressable>
       </View>
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   topBar: {
-    paddingTop: 24,
+    paddingTop: 28,
     paddingHorizontal: 20,
     paddingBottom: 10,
     flexDirection: "row",
@@ -70,11 +72,9 @@ const styles = StyleSheet.create({
   bookmarkIcon: {
     width: 24,
     height: 24,
-    resizeMode: "contain",
   },
   backIcon: {
       width: 24,
       height: 24,
-      resizeMode: "contain",
     },
 });

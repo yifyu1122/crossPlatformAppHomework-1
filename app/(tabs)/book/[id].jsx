@@ -1,8 +1,8 @@
 // app/book/[id].jsx
 import { View } from "react-native";
 import { useLocalSearchParams, Stack } from "expo-router";
-import BookContent from '../../component/BookContent';
-import { COVER_IMAGES } from '../../component/coverImages';
+import BookContent from '../../../component/BookContent';
+import { COVER_IMAGES } from '../../../component/coverImages';
 
 export default function Book() {
   const { id, title, coverKey, author } = useLocalSearchParams();
@@ -13,7 +13,7 @@ export default function Book() {
       <Stack.Screen
         options={{
           title: title,
-          headerBackButtonDisplayMode: 'minimal',
+          headerBackTitleVisible: false,
         }}
       />
 

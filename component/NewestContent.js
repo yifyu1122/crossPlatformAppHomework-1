@@ -16,7 +16,7 @@ export default function NewestContent({
   const totalStars = 5;
   return (
     <View style={styles.container}>
-      {bookCover && <Image source={bookCover} style={styles.cover} />}
+      {bookCover && <Image source={bookCover} style={styles.cover} resizeMode="cover" />}
 
       <Text style={styles.title}>{bookTitle}</Text>
       <Text style={styles.author}>{bookAuthor}</Text>
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     width: 210,
     height: 300,
     borderRadius: 12,
-    resizeMode: "cover",
     marginBottom: 28,
   },
   title: {

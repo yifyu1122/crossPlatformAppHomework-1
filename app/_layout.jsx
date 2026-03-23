@@ -1,90 +1,99 @@
+import "react-native-gesture-handler";
 import React from "react";
-import { Image, Pressable, StyleSheet } from "react-native";
-import { Tabs } from "expo-router";
+import { Drawer } from "expo-router/drawer";
+import { Image, Pressable, StyleSheet, View, Text } from "react-native";
+import { useNavigation } from "expo-router";
+import { DrawerActions } from "@react-navigation/native";
+import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
-export default function TabsLayout() {
+function MenuButton() {
+  const navigation = useNavigation();
+
   return (
-    <Tabs
+    <Pressable
+      onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+      style={styles.headerButton}
+    >
+      <Image
+        source={require("../assets/icon/icon_menu.png")}
+        style={styles.headerIcon}
+        resizeMode="contain"
+      />
+    </Pressable>
+  );
+}
+
+function SearchButton() {
+  return (
+    <Pressable style={styles.headerButton}>
+      <Image
+        source={require("../assets/icon/icon_search.png")}
+        style={styles.headerIcon}
+        resizeMode="contain"
+      />
+    </Pressable>
+  );
+}
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props} contentContainerStyle={styles.drawerContainer}>
+      <View style={styles.drawerHeader}>
+        <Image
+          source={require("../assets/user_image/img_avatar.png")}
+          style={styles.avatar}
+          resizeMode="cover"
+        />
+        <Text style={styles.drawerName}>May</Text>
+      </View>
+
+      <DrawerItem
+        label="Home"
+        icon={() => (
+          <Image
+            source={require("../assets/icon/icon_home.png")}
+            style={styles.headerIcon}
+            resizeMode="contain"
+          />
+        )}
+        onPress={() => props.navigation.navigate("(tabs)", { screen: "index" })}
+      />
+      <DrawerItem
+        label="Account"
+        icon={() => (
+          <Image
+            source={require("../assets/icon/icon_account.png")}
+            style={styles.headerIcon}
+            resizeMode="contain"
+          />
+        )}
+        onPress={() => {}}
+      />
+      <DrawerItem
+        label="Setting"
+        icon={() => (
+          <Image
+            source={require("../assets/icon/icon_settings.png")}
+            style={styles.headerIcon}
+            resizeMode="contain"
+          />
+        )}
+        onPress={() => {}}
+      />
+    </DrawerContentScrollView>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <Drawer
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
-        headerShown: true,
-        headerShadowVisible: false,
-        headerStyle: { backgroundColor: "#fff" },
-        headerTintColor: "#131313",
-        headerTitle: "",
-        headerLeft: () => (
-          <Pressable onPress={() => {}} style={styles.headerButton}>
-            <Image source={require("../assets/icon/icon_menu.png")} style={styles.headerIcon} resizeMode="contain" />
-          </Pressable>
-        ),
-        headerRight: () => (
-          <Pressable onPress={() => {}} style={styles.headerButton}>
-            <Image source={require("../assets/icon/icon_search.png")} style={styles.headerIcon} resizeMode="contain" />
-          </Pressable>
-        ),
-        tabBarActiveTintColor: "#6200EE",
-        tabBarInactiveTintColor: "#666666",
+        headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={
-                focused
-                  ? require("../assets/icon/icon_home_actived.png")
-                  : require("../assets/icon/icon_home.png")
-              }
-              style={styles.headerIcon}
-              resizeMode="contain"
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="wishlist"
-        options={{
-          title: "Wishlist",
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={
-                focused
-                  ? require("../assets/icon/icon_bookmark_actived.png")
-                  : require("../assets/icon/icon_bookmark.png")
-              }
-              style={styles.headerIcon}
-              resizeMode="contain"
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="book/[id]"
-        options={{ href: null }}
-      />
-      <Tabs.Screen
-        name="newest/[id]"
-        options={{ href: null }}
-      />
-      <Tabs.Screen
-        name="mybooks"
-        options={{
-          title: "My books",
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={
-                focused
-                  ? require("../assets/icon/icon_mybook_actived.png")
-                  : require("../assets/icon/icon_mybook.png")
-              }
-              style={styles.headerIcon}
-              resizeMode="contain"
-            />
-          ),
-        }}
-      />
-    </Tabs>
+      <Drawer.Screen name="(tabs)" />
+    </Drawer>
   );
 }
 
@@ -96,5 +105,25 @@ const styles = StyleSheet.create({
   headerIcon: {
     width: 24,
     height: 24,
+  },
+  drawerContainer: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  drawerHeader: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    marginBottom: 12,
+  },
+  drawerName: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#131313",
   },
 });
