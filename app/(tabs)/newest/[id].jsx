@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   topBar: {
-    paddingTop: 28,
+    paddingTop: 48,
     paddingHorizontal: 20,
     paddingBottom: 10,
     flexDirection: "row",

@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "expo-router";
 import { DrawerActions } from "@react-navigation/native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 function MenuButton() {
   const navigation = useNavigation();
@@ -86,14 +87,16 @@ function CustomDrawerContent(props) {
 
 export default function RootLayout() {
   return (
-    <Drawer
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Drawer.Screen name="(tabs)" />
-    </Drawer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Drawer.Screen name="(tabs)" />
+      </Drawer>
+    </GestureHandlerRootView>
   );
 }
 
